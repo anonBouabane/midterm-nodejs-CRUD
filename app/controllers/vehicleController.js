@@ -6,7 +6,7 @@ const createVehicle = (req, res) => {
 
     vehicleModel.createVehicle(newVehicle, (err, result) => {
         if (err) return res.status(500).json({ error: 'Error inserting vehicle data' });
-        res.status(201).json({ message: 'Vehicle created', vehicleId: result.insertId });
+        res.status(201).json({ message: 'Vehicle created', vehicleData:newVehicle });
     });
 };
 
@@ -34,7 +34,8 @@ const updateVehicle = (req, res) => {
     vehicleModel.updateVehicle(id, updatedVehicle, (err, result) => {
         if (err) return res.status(500).json({ error: 'Error updating vehicle' });
         if (result.affectedRows === 0) return res.status(404).json({ message: 'Vehicle not found' });
-        res.status(200).json({ message: 'Vehicle updated' });
+        res.status(200).json({ message: 'Vehicle updated',data:updatedVehicle });
+   
     });
 };
 
